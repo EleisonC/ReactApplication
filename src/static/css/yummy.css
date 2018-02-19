@@ -1,0 +1,22 @@
+body{
+    background-image: url(../img/giphy.gif);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.head {
+    display: flex;
+    opacity: 0%;
+    
+}
+#signup{
+    width: 50rem;
+}
+
+#navbar{
+    margin-left: 75%;
+}
+#Login{
+    width: 31rem;
+    margin-left: 33%;
+    margin-top: 11% !important;
+}
