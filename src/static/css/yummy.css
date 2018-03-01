@@ -9,7 +9,9 @@ body{
     
 }
 #signup{
-    width: 50rem;
+    width: 31rem;
+    margin-left: 33%;
+    margin-top: 11% !important;
 }
 
 #navbar{
@@ -19,4 +21,35 @@ body{
     width: 31rem;
     margin-left: 33%;
     margin-top: 11% !important;
+}
+.categorycontainer{
+    border: 10px solid rgb(20, 100, 206);
+    margin-left: 14em;
+    margin-right: 123px;
+    width: 76em;
+    height: 184px;
+    margin-top: 2em;
+    border-radius: 48em
+}
+#searchCategory{
+    margin-right: 26em;
+    margin-top: -23px;
+    width: 25em;
+}
+#Categorysearch{
+    border-radius: 2em;
+    margin-left: 2em;
+}
+#addcategory{
+    margin-left: 43em;
+    margin-top: -4em;
+    margin-bottom: -35em;
+    width: 16em;
+}
+#row1{
+    margin-top: -2em;
+}
+#categorybutton{
+    margin-left: 5em;
+    margin-top: 1em;
 }

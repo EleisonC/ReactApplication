@@ -7,22 +7,20 @@ export const signup = (state) => {
         return axios.post('http://127.0.0.1:5000/auth/register', state)
         .then((response) => {
             notify.show(response.data.message, 'success', 4000);
-            this.props.history.push('/login');
-            console.log(response);
+            dispatch(registerUser(state));
         })
         .catch(error => {
-            console.log(error)
             if (error.response) {
-                alert(error.response.data.message)
+                notify.show(error.response.data.message, 'error', 4000);
             } else if (error.request) {
                 alert("REQUEST NOT MADE")
             }
+            throw(error)
         })
-        dispatch(registerUser(state));
-    
 }
 }
 function registerUser(state){
+    debugger;
     return{
         type: SIGN_UP_SUCCESS,
         payload: state

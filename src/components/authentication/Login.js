@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
-import {notify} from 'react-notify-toast';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as authentication from '../../actions/loginUser';
 
 
 class Login extends React.Component{
@@ -9,13 +10,15 @@ class Login extends React.Component{
         password: ''
     }
     handleChange = (event) => {
+        event.preventDefault()
         const {name, value} = event.target;
         this.setState({[name]: value});
 
     }
-    handleLogin (event) {
-        const {username, password} = this.state;
+    handleLogin = (event) => {
         event.preventDefault();
+        const {username, password} = this.state;
+        this.props.actions.login(this.state)
     }
 
 
@@ -49,5 +52,9 @@ class Login extends React.Component{
         );
     }
 }
-
-export default Login;
+function mapDispatchToProps (dispatch) {
+    return {
+        actions : bindActionCreators(authentication, dispatch) 
+    };
+}
+export default connect(null, mapDispatchToProps)(Login);

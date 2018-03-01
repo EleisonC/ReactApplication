@@ -5,6 +5,8 @@ import HomePage from './home/homePage.js';
 import Registration from './authentication/authentication.js';
 import Navbar from './nav';
 import Login from './authentication/Login';
+import FirstDisplay from './dashboard/display'
+import CreateCategory from './dashboard/categories/createCategory'
 
 
 class App extends Component{
@@ -18,7 +20,8 @@ class App extends Component{
                     <Route  exact path='/' component={HomePage} />
                     <Route  exact path='/signup' component={Registration} />
                     <Route exact path='/login' component={Login} />
-
+                    <Route exact path='/userpage' component={ FirstDisplay } />
+                    <Route exact path= '/createcategory' component={ CreateCategory }/>
                 </Switch>
             </div>
             </BrowserRouter>
