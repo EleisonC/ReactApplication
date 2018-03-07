@@ -5,8 +5,9 @@ import HomePage from './home/homePage.js';
 import Registration from './authentication/authentication.js';
 import Navbar from './nav';
 import Login from './authentication/Login';
-import FirstDisplay from './dashboard/display'
-import CreateCategory from './dashboard/categories/createCategory'
+import FirstDisplay from './dashboard/display';
+import CreateCategory from './dashboard/categories/createCategory';
+import ViewRecipes from './dashboard/recipes/viewRecipes';
 
 
 class App extends Component{
@@ -22,6 +23,7 @@ class App extends Component{
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/userpage' component={ FirstDisplay } />
                     <Route exact path= '/createcategory' component={ CreateCategory }/>
+                    <Route exact path= '/:name/:id/recipies' component={ ViewRecipes }/>
                 </Switch>
             </div>
             </BrowserRouter>

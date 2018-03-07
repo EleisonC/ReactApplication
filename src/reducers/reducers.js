@@ -3,10 +3,10 @@ const categories = (state = [], action) => {
         case 'ADD_CATEGORY':
             return state
         case 'VIEW_CATEGORIES':
-                return [
+                return {
                     ...state,
                     ...action.data
-                ];
+                };
         default:
             return state;
     }

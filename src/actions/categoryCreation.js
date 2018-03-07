@@ -25,11 +25,25 @@ export const AddCategory = (state) => {
         )
 }
 }
-export const ViewCategory = () => {
+export const ViewCategory = (state) => {
     const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
     return function (dispatch) {
-        return axios.get('http://127.0.0.1:5000/category_view/', {headers})
-        .then(response => dispatch(viewCategory(response.data)))}
+        return axios.get(`http://127.0.0.1:5000/category_view/?page=${state}`, {headers})
+        .then((response) =>{
+            dispatch(viewCategory(response.data))
+        })
+        .catch(
+            (error) => {
+                if (error.response) {
+                    notify.show(error.response.data.message, 'error', 4000);
+                } else if (error.request) {
+                    alert("REQUEST NOT MADE")
+                }
+                throw(error)
+            }
+        )
+    }
+
 }
 export function viewCategory(data){
     return {

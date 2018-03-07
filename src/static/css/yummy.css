@@ -53,3 +53,17 @@ body{
     margin-left: 5em;
     margin-top: 1em;
 }
+#nav{
+    display:inline-flex;
+}
+#nextButton{
+margin-left: 51em;
+margin-top: 4em;
+}
+#previousButton{
+    margin-left: 4em;
+    margin-top: 4em;
+    }
+#recipes{
+    max-width: 18rem;
+}

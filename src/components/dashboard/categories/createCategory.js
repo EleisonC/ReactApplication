@@ -15,10 +15,9 @@ class CreateCategoty extends React.Component{
     handleCreate = (e) => {
         e.preventDefault()
         const category_name = this.state;
-        this.props.actions.AddCategory(this.state).then(
-            () => {this.props.history.push('/userpage')},
-            this.props.actions.ViewCategory()
-        )
+        this.props.actions.AddCategory(this.state).then(() => {
+            this.props.history.push('/userpage')
+        })
     }
     render(){
     const {category_name} = this.state;
