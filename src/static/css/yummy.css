@@ -67,3 +67,27 @@ margin-top: 4em;
 #recipes{
     max-width: 18rem;
 }
+#categoryR{
+    border-radius: 5em;
+    width: 39em;
+    margin: 2em auto;
+}
+#categoryRbutton{
+    margin-left: 1em;
+}
+#categorybody{
+    height: 4.2em;
+}
+#categoryheader{
+    height: 3.2em;
+    padding-top: 0em;
+}
+#editcategory{
+    width: 43em !important;
+    margin: 2em auto !important;
+}
+#savebutton{
+    width: 5em !important;
+    border-radius: 5em !important;
+    margin-left: 22em !important;
+}

@@ -7,6 +7,10 @@ const categories = (state = [], action) => {
                     ...state,
                     ...action.data
                 };
+        case 'EDIT_CATEGORY':
+            return state;
+        case 'DELETE_CATEGORY':
+            return state;
         default:
             return state;
     }

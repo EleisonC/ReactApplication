@@ -15,7 +15,6 @@ class FirstDisplay extends React.Component{
         page: 1
     }
     nextPage = (e) => {
-        console.log(">>>>>>>",this.state)
         e.preventDefault()
         if  (this.props.has_next === true) {
             this.setState({
@@ -27,7 +26,6 @@ class FirstDisplay extends React.Component{
         }
     }
     previousPage = (e) => {
-        console.log(">>>>>>>",this.state)
         e.preventDefault()
         if (this.props.has_prev === true){
             this.setState({
