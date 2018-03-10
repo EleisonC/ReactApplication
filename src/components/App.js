@@ -8,8 +8,8 @@ import Login from './authentication/Login';
 import FirstDisplay from './dashboard/display';
 import CreateCategory from './dashboard/categories/createCategory';
 import ViewRecipes from './dashboard/recipes/viewRecipes';
-import EditCategory from './dashboard/categories/editCategory'
-
+import EditCategory from './dashboard/categories/editCategory';
+import CreateRecipe from './dashboard/recipes/addRecipes';
 class App extends Component{
     render() {
         return (
@@ -25,6 +25,7 @@ class App extends Component{
                     <Route exact path= '/createcategory' component={ CreateCategory }/>
                     <Route exact path= '/:name/:id/recipies' component={ ViewRecipes }/>
                     <Route exact path= '/:name/:id/editcategory' component={ EditCategory }/>
+                    <Route exact path= '/:name/:id/addrecipe' component={ CreateRecipe }/>
                 </Switch>
             </div>
             </BrowserRouter>

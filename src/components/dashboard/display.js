@@ -10,28 +10,22 @@ class FirstDisplay extends React.Component{
     constructor(props){
         super(props)
         this.props.actions.ViewCategory(1)
-    }
-    state = {
-        page: 1
+        this.state = {
+            page: 1
+        }
     }
     nextPage = (e) => {
         e.preventDefault()
         if  (this.props.has_next === true) {
-            this.setState({
-                page: this.state.page + 1
-            })
-            this.props.actions.ViewCategory(this.state.page)
+            this.props.actions.ViewCategory(this.props.nextPage.substr(this.props.nextPage.length - 1))
         }else{
-            this.props.actions.ViewCategory(this.state.page)
+            this.props.actions.ViewCategory(Number(this.props.previousPage.substr(this.props.previousPage.length-1)) + 1)
         }
     }
     previousPage = (e) => {
         e.preventDefault()
         if (this.props.has_prev === true){
-            this.setState({
-                page: this.state.page - 1
-            })
-            this.props.actions.ViewCategory(this.state.page)
+            this.props.actions.ViewCategory(this.props.previousPage.substr(this.props.previousPage.length - 1))
         }else{
             this.props.actions.ViewCategory(this.state.page)
         }
@@ -55,7 +49,8 @@ class FirstDisplay extends React.Component{
                 <button onClick={this.nextPage}
                 id="nextButton" type="button" className="btn btn-primary">Next</button>
                 {category ? 
-                category.map((item, index) => <div key={item.category_id}>
+                category.map((item, index) => 
+                <div key={item.category_id}>
                 <Link to={`/${item.category_name}/${item.category_id}/recipies`}>
                 <button type="button"  id="categorybutton"className="btn btn-primary"> 
                     {item.category_name}
@@ -92,7 +87,9 @@ function mapStateToProps (state, ownProps){
     return {
         category: state.categories.categories,
         has_next: state.categories.has_next,
-        has_prev: state.categories.has_prev
+        has_prev: state.categories.has_prev,
+        nextPage: state.categories.next_page,
+        previousPage: state.categories.previous_page
     };
 }
 function mapDispatchToProps (dispatch) {

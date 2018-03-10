@@ -5,7 +5,7 @@ import * as category from '../../../actions/categoryCreation';
 
 class EditCategory extends React.Component{
     state={
-        category_name: '',
+        category_name: this.props.match.params.name,
         category_id: this.props.match.params['id']
     }
     handleInput = (event) => {
@@ -19,6 +19,8 @@ class EditCategory extends React.Component{
         this.props.actions.editCat(category_details)
     }
     render(){
+        console.log(this.props.match.params.name);
+        
         const {category_name} = this.state;
         return (
     <div id="editcategory" className="card mt-5">
