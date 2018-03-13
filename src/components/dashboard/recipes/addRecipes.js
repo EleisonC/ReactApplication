@@ -23,10 +23,14 @@ class CreateRecipe extends React.Component{
         }
     )
     }
+    returnViewRecipes = () =>{
+        this.props.history.push(`/${this.props.match.params['name']}/${this.props.match.params['id']}/recipies`)
+    }
     render(){
         const {recipe_name, instructions, category_name } = this.state
         return (
-        <div className="card mt-5" >
+        <div id="addRecipe">
+        <div id="addRec"className="card mt-5" >
             <h4 className="card-header text-center">Add Recipe</h4>
             <div className="card-body">
                 <form onSubmit={this.handleCreate}>
@@ -37,8 +41,8 @@ class CreateRecipe extends React.Component{
                             onChange={this.handleInput} value={recipe_name}
                             />  
                         </div>
-                        <div className="form-group">
-                                <label>Category name</label>
+                        <div id ="form"className="form-group">
+                                <label>Category name:</label>
                                 <p className="from-control">{category_name}</p>
                         </div>
                         <div className="form-group">
@@ -47,10 +51,12 @@ class CreateRecipe extends React.Component{
                                 onChange={this.handleInput} value={instructions}
                                 ></textarea>
                         </div>
-                        <button type="submit" className="btn btn-primary btn-lg btn-block">CREATE</button>
+                        <button id="addBut" type="submit" className="btn btn-primary btn-lg btn-block">CREATE</button>
+                        <button id="addBut" onClick={this.returnViewRecipes} className="btn btn-danger btn-lg btn-block">CANCEL</button>
                     </div>
                 </form>
             </div>
+        </div>
         </div>
         );
     }

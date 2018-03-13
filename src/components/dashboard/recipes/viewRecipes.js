@@ -13,11 +13,6 @@ class ViewRecipes extends React.Component   {
         const id = this.props.match.params['id']
         this.props.action.ViewRecipes(id,1)
     }
-
-    componentWillUnmount(){
-        console.log("componentwillUnmount")
-        console.log(".....>>>>>> componentwillUnmount")
-    }
     nextPage = (e) => {
         e.preventDefault()
         if (this.props.next_page === null) {
@@ -61,7 +56,7 @@ class ViewRecipes extends React.Component   {
                         </div>
                         <div id="categorybody"className="card-body">
                     <Link to={`/${name}/${id}/addrecipe`}>
-                        <button type="button" className="btn btn-outline-primary">Add Recipe</button>
+                        <button id="categoryRbutton" type="button" className="btn btn-outline-primary">Add Recipe</button>
                     </Link>
                     <Link to={`/${name}/${id}/editcategory?name=${name}`}>
                         <button
@@ -71,43 +66,53 @@ class ViewRecipes extends React.Component   {
                         id="categoryRbutton" type="button" className="btn btn-outline-danger">Delete Category</button>
                         </div>
                 </div>
-            {recipes && next_page !== null || previous_page !== null ?
-                <div> 
-                <nav aria-label="Page navigation example">
-                    <ul className="pagination">
-                        <li className="page-item">
-                        <button className="page-link" onClick={this.prev_page} aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span className="sr-only">Previous</span>
-                        </button>
-                        </li>
-                        <li className="page-item"><a className="page-link">Recipes ahead</a></li>
-                        <li className="page-item">
-                        <button className="page-link"  onClick={this.nextPage}  aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span className="sr-only">Next</span>
-                        </button>
-
-                        </li>
-                    </ul>
+            {recipes && recipes.length > 0?
+                <nav className="navbar navbar-light " id="navRec">
+                    <form className="form-inline">
+                        <input  id="CategorySearch"className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button id="CategorySearchBut" className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
                 </nav>
+                : <div> </div>
+            }
+            {recipes && recipes.length > 0 && next_page === null?
+                <div id="paginateRecipies"> 
+                        <button onClick={this.prev_page} id="previousButton"type="button" className="btn btn-light">Previous</button>
+                </div> : <div> </div>
+
+            }
+            {recipes && recipes.length > 0 && next_page !== null?
+                <div id="paginateRecipies"> 
+                        <button onClick={this.prev_page} id="previousButton"type="button" className="btn btn-light">Previous</button>
+                        <button onClick={this.nextPage}
+                        id="nextButton" type="button" className="btn btn-light">Next</button>
                 </div> : <div> </div>
             }
+            <div class="container" id="recipeContainer"> 
+            <div class="row">
                 {recipes && recipes.length > 0 ?
                     recipes.map((recipe) => 
                         <div key={recipe.recipe_id}>
-                            <div className="card bg-light mb-3" id="recipes">
-                                <div className="card-header">{recipe.recipe_name}</div>
-                                <div className="card-body">
-                                    <h5 className="card-title">Instructions</h5>
-                                    <p className="card-text">{recipe.instructions.slice(0,100)}</p>
+                            <div className="col-sm card"  id="recipes">
+                            <img className="card-img-top" src={"https://images.unsplash.com/photo-1422207239328-29f83832206c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6f00eac866bbea1b6ab3d19ddb2de6fd&auto=format&fit=crop&w=1279&q=80"} alt="Card image cap"/>
+                                <div className="card-body" id="recipeBody">
+                                    <h5 className="card-title">{recipe.recipe_name}</h5>
+                                    <p className="card-text">{recipe.instructions.slice(0,100)}...</p>
+                                    <button  type="button"  id="Recipebutton"className="btn btn-outline-primary"> 
+                                    <Link id="link" to={`/${name}/${recipe.category}/recipe/${recipe.recipe_id}`}>
+                                    More Details
+                                    </Link>
+                                    </button>
                                 </div>
-                                <Link to= {`/${name}/${recipe.category}/recipe/${recipe.recipe_id}`}>
-                                <button className="card-footer">View Recipe</button>
-                                </Link>
                             </div>
                         </div>)  
-                        :<div>No Recipes</div>}
+                        :<div id="Norecipie"class="jumbotron jumbotron-fluid">
+                            <div class="container">
+                                <h1 class="display-4">No Recipes Here </h1>
+                            </div>
+                        </div>}
+            </div>
+            </div>
             </div>
         );
     }

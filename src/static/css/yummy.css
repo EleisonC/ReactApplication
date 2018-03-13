@@ -1,7 +1,9 @@
-body{
+#background{
     background-image: url(../img/giphy.gif);
     background-size: 100%;
     background-repeat: no-repeat;
+    padding-top: 2em;
+    padding-bottom: 28em;
 }
 .head {
     display: flex;
@@ -11,7 +13,7 @@ body{
 #signup{
     width: 31rem;
     margin-left: 33%;
-    margin-top: 11% !important;
+    margin-top: 7% !important;
 }
 
 #navbar{
@@ -41,28 +43,30 @@ body{
     margin-left: 2em;
 }
 #addcategory{
-    margin-left: 40em;
-    margin-top: -4em;
-    margin-bottom: -35em;
     width: 16em;
+    border-radius: 2em;
 }
 #row1{
     margin-top: -2em;
 }
 #categorybutton{
-    margin-left: 5em;
-    margin-top: 1em;
+    margin-left: 8em;
+    margin-top: -5em;
+    border-radius: 2em;
 }
 #nav{
     display:inline-flex;
 }
 #nextButton{
-margin-left: 51em;
+margin-left: 53em;
 margin-top: 4em;
+border-radius: 2em;
+width:6em;
 }
 #previousButton{
     margin-left: 4em;
     margin-top: 4em;
+    border-radius: 2em;
     }
 #recipes{
     max-width: 18rem;
@@ -71,9 +75,11 @@ margin-top: 4em;
     border-radius: 5em;
     width: 39em;
     margin: 2em auto;
+    border: white;
 }
 #categoryRbutton{
     margin-left: 1em;
+    border-radius: 2em;
 }
 #categorybody{
     height: 4.2em;
@@ -81,26 +87,124 @@ margin-top: 4em;
 #categoryheader{
     height: 3.2em;
     padding-top: 0em;
-}
-#editcategory{
-    width: 43em !important;
-    margin: 2em auto !important;
+    background: #ffffff;
+    border-bottom:#f5f5f5; 
 }
 #savebutton{
     width: 5em !important;
     border-radius: 5em !important;
     margin-left: 22em !important;
+    border-radius: 2em;
 }
 #recipecard{
-    width: 51em;
+    width: 52em;
     margin: 8em auto;
 
 }
 #Resbutton{
-    margin-left: 32em;
+    margin-left: 12em;
+    border-radius: 2em;
 }
 #nocategory{
     width: 12em;
     margin-left: 28em;
     margin-top: 3em;
+}
+#categoryCard{
+    width: 18rem;
+    padding: 0em;
+    margin-left: 5em;
+    margin-top: 2em;
+  
+}
+#cardBodyCat{
+    height: 3.8em;
+}
+#link{
+    text-decoration: none;
+}
+a:hover{
+    color: white;
+}
+#navCat{
+    margin-top: 3em;
+    width: 59em;
+    margin-left: 16em;
+    border-radius: 2em;
+}
+#CategorySearch{
+    border-radius: 2em;
+    background-color:#f5f5f5;
+}
+#CategorySearchBut{
+    border-radius: 2em;
+}
+
+#paginateCat{
+    margin-top: -3em;
+}
+#Norecipie{
+    width: 34em;
+    text-align: center;
+    opacity: 0.5;
+    margin-top: 5em;
+    margin-left: 18em;
+}
+#recipes{
+    margin-left: 5em;
+    padding: 0em;
+    margin-top: 4em;
+}
+#Recipebutton{
+    border-radius: 2em;
+}
+#recipeBody{
+    text-align: center;
+    background-color: #f5f5f5;
+}
+#paginateRecipies{
+    margin-top: -2em;
+    margin-left: 10em;
+}
+#recipeContainer{
+    margin-top: -3em;
+}
+#navRec{
+    margin-left: 35em;
+    margin-bottom: -5em;
+}
+#addCat{
+    width: 34em;
+    margin-left: 29em;
+    margin-top: 8rem!important
+}
+#add{
+    background-image:url(../img/chef2.png);
+    background-position-x: -16em;
+    background-position-y: -10em;
+    }
+#addBut{
+    border-radius: 2em;
+}
+#addRec{
+    width: 47em;
+    margin-left: 21em;
+}
+#form{
+    display: inline-flex;
+}
+#form p {
+    margin-left: 7em;
+}
+#addRecipe {
+    background-image:url(../img/chef1.png);
+}
+#returnBut{
+    margin-left: 11em;
+    border-radius: 2em;
+}
+#viewRes{
+    background-image:url(../img/chefres.png);
+    background-position-y: -12em;
+    background-position-x: -32em;
 }

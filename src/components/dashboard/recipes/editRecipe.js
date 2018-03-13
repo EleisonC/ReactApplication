@@ -36,10 +36,14 @@ class EditRecipe extends React.Component{
             this.props.history.push(`/category/${this.state.category_id}/recipe/${this.state.recipe_id}`)
         })
     }
+    returnToRcipe = () => {
+        this.props.history.push(`/category/${this.state.category_id}/recipe/${this.state.recipe_id}`)
+    }
     render (){
         const {recipe_name, instructions} = this.state;
         return (
-        <div className="card mt-5" >
+        <div id="addRecipe">
+        <div id="addRec" className="card mt-5" >
            <h4 className="card-header text-center">Edit Recipe</h4>
            <div className="card-body">
                <form onSubmit={this.handleEdit}>
@@ -56,10 +60,12 @@ class EditRecipe extends React.Component{
                                onChange={this.handleInput} value={instructions}
                                ></textarea>
                        </div>
-                       <button type="submit" className="btn btn-primary btn-lg btn-block">Save</button>
+                       <button id="addBut" type="submit" className="btn btn-primary btn-lg btn-block">Save</button>
+                       <button id="addBut" onClick={this.returnToRcipe} className="btn btn-danger btn-lg btn-block">Cancel</button>
                    </div>
                </form>
            </div>
+       </div>
        </div>
         );
     }

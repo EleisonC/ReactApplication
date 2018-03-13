@@ -25,6 +25,7 @@ class Registraton extends React.Component{
     render(){
         const {email, username, password} = this.state;
         return (
+    <div id="background">
             <div className="card mt-5" id="signup">
             <h4 className="card-header text-center">Please SignUp</h4>
             <div className="card-body">
@@ -56,6 +57,7 @@ class Registraton extends React.Component{
 
             </div>
         </div>
+    </div>
         )
     }
 }

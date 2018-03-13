@@ -28,8 +28,8 @@ class Navbar extends Component{
                 </div>
                 :
                 <div>
-                <li className="nav-item">
-                    <Link to="/userpage" className="nav-link disabled" >Dashboard</Link>
+                <li className="nav-item active">
+                    <Link to="/userpage" className="nav-link" >Dashboard<span className="sr-only">(current)</span></Link>
                 </li>
                 </div>}
             </ul>
