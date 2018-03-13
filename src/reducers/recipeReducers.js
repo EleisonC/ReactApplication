@@ -7,6 +7,10 @@ const recipes = (state = [], action) => {
                 ...state,
                 ...action.data
             };
+        case 'EDIT_RECIPE':
+            return state;
+        case 'DELETE_RECIPE':
+            return state;
         default:
             return state;
     }

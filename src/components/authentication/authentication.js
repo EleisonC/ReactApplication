@@ -26,7 +26,7 @@ class Registraton extends React.Component{
         const {email, username, password} = this.state;
         return (
             <div className="card mt-5" id="signup">
-            <h4 className="card-header text-center">Please Sign</h4>
+            <h4 className="card-header text-center">Please SignUp</h4>
             <div className="card-body">
                 
                     <form onSubmit={this.handleSignup}>
@@ -50,7 +50,7 @@ class Registraton extends React.Component{
                                     />
 
                             </div>
-                            <button  type="submit" className="btn btn-success ">CREATE</button>
+                            <button  type="submit" className="btn btn-success ">CREATE AN ACCOUNT</button>
                         </div>
                     </form>
 

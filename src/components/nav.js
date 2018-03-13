@@ -14,11 +14,11 @@ class Navbar extends Component{
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <a className="navbar-brand">YUMMY RECIPES</a>
             <ul className="navbar-nav  mt-2 mt-lg-0" id="navbar">
+                {!isLoggedIn?
+                <div id="nav">
                 <li className="nav-item active">
                 <Link to="/" className="nav-link" >Home <span className="sr-only">(current)</span></Link>
                 </li>
-                {!isLoggedIn?
-                <div id="nav">
                 <li className="nav-item">
                     <Link to="/login" className="nav-link" >Login</Link>
                 </li>

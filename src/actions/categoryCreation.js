@@ -68,7 +68,7 @@ export const deleteCat = (state) => {
     return function (dispatch) {
         return axios.delete(`http://127.0.0.1:5000/category_delete/${state}`,{headers})
         .then((response) => {notify.show(response.data.message, 'success', 4000);
-                            dispatch(deleteCategory)})
+                            dispatch(deleteCategory())})
         .catch(
             (error) => {
                 if (error.response){

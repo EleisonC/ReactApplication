@@ -5,12 +5,18 @@ import { Link } from 'react-router-dom';
 import * as category from '../../../actions/categoryCreation'
 import * as recipes from '../../../actions/recipeActions' 
 
-class ViewRecipes extends React.Component{
+class ViewRecipes extends React.Component   {
 
     componentDidMount(){
+        console.log("componentDidMount>>>>>>>>",this.props.recipes)
         const name = this.props.match.params['name']
         const id = this.props.match.params['id']
         this.props.action.ViewRecipes(id,1)
+    }
+
+    componentWillUnmount(){
+        console.log("componentwillUnmount")
+        console.log(".....>>>>>> componentwillUnmount")
     }
     nextPage = (e) => {
         e.preventDefault()
@@ -38,12 +44,15 @@ class ViewRecipes extends React.Component{
     handledelete = (e) => {
         e.preventDefault()
         const id = this.props.match.params['id']
-        this.props.actions.deleteCat(id)
+        this.props.actions.deleteCat(id).then(()=>{
+            this.props.history.push('/userpage')
+            window.location.reload();
+        })
     }
     render(){
         const name = this.props.match.params['name']
         const id = this.props.match.params['id']
-        const { recipes } = this.props;
+        const { recipes, next_page, previous_page } = this.props;     
         return(
             <div>
                 <div id="categoryR" className="card text-center">
@@ -62,6 +71,7 @@ class ViewRecipes extends React.Component{
                         id="categoryRbutton" type="button" className="btn btn-outline-danger">Delete Category</button>
                         </div>
                 </div>
+            {recipes && next_page !== null || previous_page !== null ?
                 <div> 
                 <nav aria-label="Page navigation example">
                     <ul className="pagination">
@@ -81,8 +91,9 @@ class ViewRecipes extends React.Component{
                         </li>
                     </ul>
                 </nav>
-                </div>
-                {recipes ?
+                </div> : <div> </div>
+            }
+                {recipes && recipes.length > 0 ?
                     recipes.map((recipe) => 
                         <div key={recipe.recipe_id}>
                             <div className="card bg-light mb-3" id="recipes">
@@ -91,7 +102,9 @@ class ViewRecipes extends React.Component{
                                     <h5 className="card-title">Instructions</h5>
                                     <p className="card-text">{recipe.instructions.slice(0,100)}</p>
                                 </div>
-                                <div className="card-footer">View Recipe</div>
+                                <Link to= {`/${name}/${recipe.category}/recipe/${recipe.recipe_id}`}>
+                                <button className="card-footer">View Recipe</button>
+                                </Link>
                             </div>
                         </div>)  
                         :<div>No Recipes</div>}
@@ -110,8 +123,8 @@ function mapDispatchToProps (dispatch){
 function mapStateToProps(state, ownprops){
     return{
         recipes: state.recipes.recipes,
-        next_page:state.recipes.next_page,
-        previous_page:state.recipes.previous_page
+        next_page: state.recipes.next_page,
+        previous_page: state.recipes.previous_page
     }
 }
 

@@ -20,7 +20,7 @@ class CreateCategoty extends React.Component{
         })
     }
     render(){
-    const {category_name} = this.state;
+        const {category_name} = this.state;
     return (
             <div className="card mt-5">
                 <h4 className="card-header text-center">Add Category</h4>

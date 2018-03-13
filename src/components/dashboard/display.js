@@ -13,6 +13,8 @@ class FirstDisplay extends React.Component{
         this.state = {
             page: 1
         }
+        this.reload
+        
     }
     nextPage = (e) => {
         e.preventDefault()
@@ -30,8 +32,11 @@ class FirstDisplay extends React.Component{
             this.props.actions.ViewCategory(this.state.page)
         }
     }
+    recipes = (a,b) => {
+        
+    }
     render(){
-        const {category} = this.props;      
+        const {category , has_next, has_prev} = this.props;      
         return(
             <div>
             <div>
@@ -42,23 +47,31 @@ class FirstDisplay extends React.Component{
                 Add Category
             </button>
             </Link>
+           
             <div className="row" id='row1'>
                 <div className="categorycontainer">
+            { category && has_next !== false ?
+            <div>
                 <button onClick={this.previousPage
                 } id="previousButton"type="button" className="btn btn-primary">Previous</button>
                 <button onClick={this.nextPage}
                 id="nextButton" type="button" className="btn btn-primary">Next</button>
-                {category ? 
-                category.map((item, index) => 
-                <div key={item.category_id}>
-                <Link to={`/${item.category_name}/${item.category_id}/recipies`}>
-                <button type="button"  id="categorybutton"className="btn btn-primary"> 
-                    {item.category_name}
-                </button>
-                </Link>
-                    </div>)
+            </div>
+                : <div> </div>
+            }
+            {category && category.length > 0 ? 
+            category.map((item, index) => 
+            <div key={item.category_id}>
+            <Link to={`/${item.category_name}/${item.category_id}/recipies`}>
+            <button  type="button"  id="categorybutton"className="btn btn-primary"> 
+                {item.category_name}
+            </button>
+            </Link>
+                </div>)
 
-                 : <div>NO categories</div>}
+                : <div id ="nocategory" className="alert alert-primary" role="alert">
+                No Categories
+                </div>}
 
 
                 {/* <form  className ="form-group" role="search">
