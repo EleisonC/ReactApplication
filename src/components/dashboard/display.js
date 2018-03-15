@@ -7,14 +7,16 @@ import { Link } from 'react-router-dom';
 
 
 class FirstDisplay extends React.Component{
-    constructor(props){
-        super(props)
+    state = {
+        q: ""
+    }
+    componentWillMount(){
         this.props.actions.ViewCategory(1);
-        this.state = {
-            page: 1
-        }
-        this.reload
-        
+    }
+    handleInput = (event) => {
+        this.setState({q: event.target.value});
+        const category = this.state
+        this.props.actions.searchCategory(category)
     }
     nextPage = (e) => {
         e.preventDefault()
@@ -32,13 +34,22 @@ class FirstDisplay extends React.Component{
             this.props.actions.ViewCategory(this.state.page)
         }
     }
+    handleSearch = (value) => {
+        value.preventDefault();
+        const category = this.state
+        this.props.actions.searchCategory(category)
+    }
     render(){
-        const {category , has_next, has_prev} = this.props;      
+        const { category , has_next, has_prev } = this.props; 
+        const { q } = this.state;
         return(
         <div>
             <nav className="navbar navbar-light " id="navCat">
-                <form className="form-inline">
-                    <input  id="CategorySearch"className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                <form className="form-inline" onSubmit={this.handleSearch}>
+                    <input onChange={this.handleInput}
+                        value={q}
+                        name="q"
+                      id="CategorySearch"className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
                     <button id="CategorySearchBut" className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 <Link to='/createcategory'>   
@@ -47,9 +58,9 @@ class FirstDisplay extends React.Component{
             </button>
             </Link>
             </nav>
-            <div class="container">
-            <div class="row">
-                {category && has_next === false ?
+            <div className="container">
+            <div className="row">
+                {category && has_next === false && has_prev !== false ?
                     <div id="paginateCat">
                         <button onClick={this.previousPage
                         } id="previousButton"type="button" className="btn btn-light">Previous</button>
@@ -65,6 +76,7 @@ class FirstDisplay extends React.Component{
                     </div>
                         : <div> </div>
                     }
+                    <div id="catCard"className="row">
                     {category && category.length > 0 ? 
                     category.map((item) => 
                     <div key={item.category_id}>
@@ -85,6 +97,7 @@ class FirstDisplay extends React.Component{
                         : <div id ="nocategory" className="alert alert-primary" role="alert">
                         No Categories
                         </div>}
+                    </div>
                         
             </div>
             </div>

@@ -6,9 +6,11 @@ import * as category from '../../../actions/categoryCreation'
 import * as recipes from '../../../actions/recipeActions' 
 
 class ViewRecipes extends React.Component   {
-
+    state = {
+        q : "",
+        category: this.props.match.params['id']
+    }
     componentDidMount(){
-        console.log("componentDidMount>>>>>>>>",this.props.recipes)
         const name = this.props.match.params['name']
         const id = this.props.match.params['id']
         this.props.action.ViewRecipes(id,1)
@@ -44,10 +46,23 @@ class ViewRecipes extends React.Component   {
             window.location.reload();
         })
     }
+    handleInput = (e) => {
+        e.preventDefault()
+        const { name, value } = e.target;
+        this.setState({
+            [name]: value
+        });
+    }
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const details = this.state;
+        this.props.action.searchRecipe(details)
+    }
     render(){
-        const name = this.props.match.params['name']
-        const id = this.props.match.params['id']
-        const { recipes, next_page, previous_page } = this.props;     
+        const name = this.props.match.params['name'];
+        const id = this.props.match.params['id'];
+        const { recipes, next_page, previous_page } = this.props;
+        const { q } = this.state;  
         return(
             <div>
                 <div id="categoryR" className="card text-center">
@@ -68,14 +83,15 @@ class ViewRecipes extends React.Component   {
                 </div>
             {recipes && recipes.length > 0?
                 <nav className="navbar navbar-light " id="navRec">
-                    <form className="form-inline">
-                        <input  id="CategorySearch"className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                    <form className="form-inline" onSubmit={this.handleSubmit}>
+                        <input name="q" value={q} onChange={this.handleInput}
+                          id="CategorySearch"className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
                         <button id="CategorySearchBut" className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </nav>
                 : <div> </div>
             }
-            {recipes && recipes.length > 0 && next_page === null?
+            {recipes && recipes.length > 0 && next_page === null && previous_page !== null?
                 <div id="paginateRecipies"> 
                         <button onClick={this.prev_page} id="previousButton"type="button" className="btn btn-light">Previous</button>
                 </div> : <div> </div>
@@ -88,8 +104,8 @@ class ViewRecipes extends React.Component   {
                         id="nextButton" type="button" className="btn btn-light">Next</button>
                 </div> : <div> </div>
             }
-            <div class="container" id="recipeContainer"> 
-            <div class="row">
+            <div className="container" id="recipeContainer"> 
+            <div className="row">
                 {recipes && recipes.length > 0 ?
                     recipes.map((recipe) => 
                         <div key={recipe.recipe_id}>
@@ -106,9 +122,9 @@ class ViewRecipes extends React.Component   {
                                 </div>
                             </div>
                         </div>)  
-                        :<div id="Norecipie"class="jumbotron jumbotron-fluid">
-                            <div class="container">
-                                <h1 class="display-4">No Recipes Here </h1>
+                        :<div id="Norecipie"className="jumbotron jumbotron-fluid">
+                            <div className="container">
+                                <h1 className="display-4">No Recipes Here </h1>
                             </div>
                         </div>}
             </div>

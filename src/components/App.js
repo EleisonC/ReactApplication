@@ -13,6 +13,7 @@ import CreateRecipe from './dashboard/recipes/addRecipes';
 import ViewRecipe from './dashboard/recipes/viewRecipe'
 import viewRecipe from './dashboard/recipes/viewRecipe';
 import EditRecipe from './dashboard/recipes/editRecipe';
+import SecureRoute from './privateRoute'
 class App extends Component{
     render() {
         return (
@@ -24,13 +25,13 @@ class App extends Component{
                     <Route exact path='/' component={HomePage} />
                     <Route exact path='/signup' component={Registration} />
                     <Route exact path='/login' component={Login} />
-                    <Route exact path='/userpage' component={ FirstDisplay } />
-                    <Route exact path= '/createcategory' component={ CreateCategory }/>
-                    <Route exact path= '/:name/:id/recipies' component={ ViewRecipes }/>
-                    <Route exact path= '/:name/:id/editcategory' component={ EditCategory }/>
-                    <Route exact path= '/:name/:id/addrecipe' component={ CreateRecipe }/>
-                    <Route exact path= '/:name/:categoryId/recipe/:recipeId' component={ viewRecipe }/>
-                    <Route exact path= '/category/:categoryId/recipe/:recipeId/editrecipe' component={ EditRecipe }/>
+                    <SecureRoute exact path='/userpage' component={ FirstDisplay } />
+                    <SecureRoute exact path= '/createcategory' component={ CreateCategory }/>
+                    <SecureRoute exact path= '/:name/:id/recipies' component={ ViewRecipes }/>
+                    <SecureRoute exact path= '/:name/:id/editcategory' component={ EditCategory }/>
+                    <SecureRoute exact path= '/:name/:id/addrecipe' component={ CreateRecipe }/>
+                    <SecureRoute exact path= '/:name/:categoryId/recipe/:recipeId' component={ viewRecipe }/>
+                    <SecureRoute exact path= '/category/:categoryId/recipe/:recipeId/editrecipe' component={ EditRecipe }/>
                 </Switch>
             </div>
             </BrowserRouter>

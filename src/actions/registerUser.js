@@ -1,13 +1,14 @@
 import { SIGN_UP_SUCCESS } from './actionTypes';
 import axios from 'axios';
 import {notify} from 'react-notify-toast';
+import { URL_NAME } from './Url';
 
 export const signup = (state) => {
     return function (dispatch){
-        return axios.post('http://127.0.0.1:5000/auth/register', state)
+        return axios.post(`${URL_NAME}/auth/register`, state)
         .then((response) => {
             notify.show(response.data.message, 'success', 4000);
-            dispatch(registerUser(state));
+            dispatch(registerUser());
         })
         .catch(error => {
             if (error.response) {
@@ -19,11 +20,9 @@ export const signup = (state) => {
         })
 }
 }
-function registerUser(state){
-    debugger;
+function registerUser(){
     return{
         type: SIGN_UP_SUCCESS,
-        payload: state
     };
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as category from '../../../actions/categoryCreation'
-class CreateCategoty extends React.Component{
+class CreateCategory extends React.Component{
     state = {
         category_name: ''
     }
@@ -55,4 +55,4 @@ function mapDispatchToProps (dispatch) {
     };
 }
 
-export default connect(null, mapDispatchToProps)(CreateCategoty);
+export default connect(null, mapDispatchToProps)(CreateCategory);

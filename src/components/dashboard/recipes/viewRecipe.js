@@ -37,7 +37,7 @@ class ViewRecipe extends React.Component{
                     <Link to={`/category/${categoryId}/recipe/${recipeId}/editrecipe`} >
                     <button
                         id="categoryRbutton" type="button" className="btn btn-outline-secondary">Edit Recipe</button></Link>
-                    <button onClick={this.returnToRecipes} id="returnBut"type="button" class="btn btn-outline-dark">
+                    <button onClick={this.returnToRecipes} id="returnBut"type="button" className="btn btn-outline-dark">
                         Return To Recipes
                         </button>
                     <button onClick={this.handledelete}

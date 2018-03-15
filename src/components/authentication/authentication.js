@@ -13,13 +13,13 @@ class Registraton extends React.Component{
         event.preventDefault()
         const {name, value} = event.target;
         this.setState({[name]: value});
-        console.log(this.props.actions)
     }
     handleSignup = (e) => {
         e.preventDefault()
         const {email, username, password} = this.state;
-        this.props.actions.signup(this.state).then(
-            () => {this.props.history.push('/login')}
+        this.props.actions.signup(this.state)
+        .then(
+        () => {this.props.history.push('/login')}
         )
     }
     render(){

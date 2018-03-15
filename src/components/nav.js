@@ -1,10 +1,26 @@
 import React, {Component}from 'react';
 import {Link} from 'react-router-dom';
-import { __esModule } from 'react-router-dom/Redirect';
+import { notify } from 'react-notify-toast';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as authentication from '../actions/loginUser';
 
-const isLoggedIn = localStorage.getItem('accessToken')
+
 class Navbar extends Component{
-    render(){    
+    handleLogout = () =>{
+        this.props.action.logout()
+        .then( () =>{
+            window.localStorage.clear();
+            window.location.reload()}
+        
+        )
+        
+    }
+    handleDash = () => {
+        window.location.reload()
+    }
+    render(){ 
+        const isLoggedIn = localStorage.getItem('accessToken')   
         return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,9 +44,14 @@ class Navbar extends Component{
                 </div>
                 :
                 <div>
-                <li className="nav-item active">
-                    <Link to="/userpage" className="nav-link" >Dashboard<span className="sr-only">(current)</span></Link>
+            <div id="nav">
+                <li onClick={this.handleDash}className="nav-item active">
+                    <Link id="dash" to="/userpage" className="nav-link" >Dashboard<span className="sr-only">(current)</span></Link>
                 </li>
+                <li onClick={this.handleLogout} className="nav-item active">
+                    <Link to="/login" className="nav-link" >Logout<span className="sr-only">(current)</span></Link>
+                </li>
+            </div>
                 </div>}
             </ul>
             </div>
@@ -39,4 +60,9 @@ class Navbar extends Component{
     </div>);
     }
 }
- export default Navbar;
+function mapDispatchToProps (dispatch){
+    return{
+        action: bindActionCreators(authentication, dispatch)
+    };
+}
+ export default connect(null, mapDispatchToProps)(Navbar);

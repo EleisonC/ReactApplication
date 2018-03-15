@@ -1,4 +1,4 @@
-const recipes = (state = [], action) => {
+export const recipes = (state = [], action) => {
     switch ( action.type ){
         case 'ADD_RECIPE':
             return state;

@@ -4,11 +4,12 @@ import { ADD_RECIPE } from './actionTypes';
 import {DELETE_RECIPE} from './actionTypes';
 import axios from 'axios';
 import { notify } from 'react-notify-toast';
+import { URL_NAME } from './Url';
 
 export const AddRecipe = (state) => {
     const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
     return function (dispatch) {
-        return axios.post(`http://127.0.0.1:5000/create_recipe/${state.category_id}`, state, {headers})
+        return axios.post(`${URL_NAME}/create_recipe/${state.category_id}`, state, {headers})
         .then((response) => {
             notify.show(response.data.message, 'success', 4000);
             dispatch(addRecipe())
@@ -28,7 +29,7 @@ export const AddRecipe = (state) => {
 export const ViewRecipes = (state, page) => {
     const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
     return function (dispatch) {
-        return axios.get(`http://127.0.0.1:5000/view_recipes/${state}/?page=${page}`, {headers})
+        return axios.get(`${URL_NAME}/view_recipes/${state}/?page=${page}`, {headers})
         .then((response) => {
             dispatch(viewRecipes(response.data))
         })
@@ -45,7 +46,7 @@ export const ViewRecipes = (state, page) => {
 export const ViewRecipe = (category_id, recipe_id) => {
     const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
     return function (dispatch) {
-        return axios.get(`http://127.0.0.1:5000/recipe_byid/${category_id}/${recipe_id}`, {headers})
+        return axios.get(`${URL_NAME}/recipe_byid/${category_id}/${recipe_id}`, {headers})
         .then((response) => {
             dispatch(viewRecipes(response.data))
         })
@@ -62,9 +63,8 @@ export const ViewRecipe = (category_id, recipe_id) => {
 export const editRecipe = (state) => {
     const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
     return function (dispatch) {
-        return axios.put(`http://127.0.0.1:5000/recipe_edit/${state.category_id}/${state.recipe_id}`, state, {headers})
+        return axios.put(`${URL_NAME}/recipe_edit/${state.category_id}/${state.recipe_id}`, state, {headers})
         .then((response) => {
-            notify.show(response.data.message, 'success', 4000);
             dispatch(Editrecipe())
         })
         .catch(
@@ -82,10 +82,29 @@ export const editRecipe = (state) => {
 export const deleteRecipe = (category, recipe) => {
     const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
     return function (dispatch) {
-        return axios.delete(`http://127.0.0.1:5000/recipe_delete/${category}/${recipe}`,{headers})
+        return axios.delete(`${URL_NAME}/recipe_delete/${category}/${recipe}`,{headers})
         .then((response) => {
             notify.show(response.data.message, 'success', 4000);
             dispatch(Deleterecipe())
+        })
+        .catch(
+            (error) => {
+                if (error.response) {
+                    notify.show(error.response.data.message, 'error', 4000);
+                } else if (error.request) {
+                    alert("REQUEST NOT MADE")
+                }
+                throw(error)
+            } )
+       
+    }
+}
+export const searchRecipe = (state) => {
+    const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
+    return function (dispatch) {
+        return axios.get(`${URL_NAME}/view_recipes/${state.category}/?q=${state.q}`,{headers})
+        .then((response) => {
+            dispatch(viewRecipes(response.data))
         })
         .catch(
             (error) => {
