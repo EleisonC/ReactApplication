@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/EleisonC/ReactApplication.svg?branch=develop)](https://travis-ci.org/EleisonC/ReactApplication)
+[![Coverage Status](https://coveralls.io/repos/github/EleisonC/ReactApplication/badge.svg?branch=develop)](https://coveralls.io/github/EleisonC/ReactApplication?branch=develop)
 # yummy recipes react
 Yummy Reccipes(YR)  is a react-redux application whose purpose is to ease food recipe management of various food categories.
 ## Installation and Running
