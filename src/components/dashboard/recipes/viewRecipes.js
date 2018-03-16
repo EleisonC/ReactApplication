@@ -70,10 +70,10 @@ class ViewRecipes extends React.Component   {
                         <h1>{name}</h1>
                         </div>
                         <div id="categorybody"className="card-body">
-                    <Link to={`/${name}/${id}/addrecipe`}>
+                    <Link to={`/${name}/${id}/add_recipe`}>
                         <button id="categoryRbutton" type="button" className="btn btn-outline-primary">Add Recipe</button>
                     </Link>
-                    <Link to={`/${name}/${id}/editcategory?name=${name}`}>
+                    <Link to={`/${name}/${id}/edit_category?name=${name}`}>
                         <button
                         id="categoryRbutton" type="button" className="btn btn-outline-secondary">Edit Category</button>
                     </Link>

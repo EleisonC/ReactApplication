@@ -34,7 +34,7 @@ class ViewRecipe extends React.Component{
                 <div className="card-body">
                     <h5 className="card-title">Instruction For Preparing {recipe.recipe_name}</h5>
                     <p className="card-text">{recipe.instructions}</p>
-                    <Link to={`/category/${categoryId}/recipe/${recipeId}/editrecipe`} >
+                    <Link to={`/category/${categoryId}/recipe/${recipeId}/edit_recipe`} >
                     <button
                         id="categoryRbutton" type="button" className="btn btn-outline-secondary">Edit Recipe</button></Link>
                     <button onClick={this.returnToRecipes} id="returnBut"type="button" className="btn btn-outline-dark">
