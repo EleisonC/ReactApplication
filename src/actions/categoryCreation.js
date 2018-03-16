@@ -4,11 +4,12 @@ import {EDIT_CATEGORIES} from './actionTypes';
 import { DELETE_CATEGORY } from './actionTypes';
 import axios from 'axios';
 import { notify } from 'react-notify-toast';
+import { URL_NAME } from './Url';
 
 export const AddCategory = (state) => {
     const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
     return function (dispatch){
-        return axios.post("http://127.0.0.1:5000/category_creation/", state, {headers})
+        return axios.post(`${URL_NAME}/category_creation/`, state, {headers})
         .then(
             (response) => {
                 notify.show(response.data.message, 'success', 4000);
@@ -30,7 +31,7 @@ export const AddCategory = (state) => {
 export const ViewCategory = (state) => {
     const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
     return function (dispatch) {
-        return axios.get(`http://127.0.0.1:5000/category_view/?page=${state}`, {headers})
+        return axios.get(`${URL_NAME}/category_view/?page=${state}`, {headers})
         .then((response) =>{
             dispatch(viewCategory(response.data))
         })
@@ -50,8 +51,8 @@ export const ViewCategory = (state) => {
 export const editCat = (state) => {
     const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
     return function (dispatch) {
-        return axios.put(`http://127.0.0.1:5000/category_edit/${state.category_id}`, state, {headers})
-        .then((response) => {notify.show(response.data.message, 'success', 4000);
+        return axios.put(`${URL_NAME}/category_edit/${state.category_id}`, state, {headers})
+        .then((response) => {
                             dispatch(editCategory())})
         .catch(
             (error) => {
@@ -66,9 +67,9 @@ export const editCat = (state) => {
 export const deleteCat = (state) => {
     const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
     return function (dispatch) {
-        return axios.delete(`http://127.0.0.1:5000/category_delete/${state}`,{headers})
+        return axios.delete(`${URL_NAME}/category_delete/${state}`,{headers})
         .then((response) => {notify.show(response.data.message, 'success', 4000);
-                            dispatch(deleteCategory)})
+                            dispatch(deleteCategory())})
         .catch(
             (error) => {
                 if (error.response){
@@ -78,7 +79,27 @@ export const deleteCat = (state) => {
                 }
                 throw(error)
             })}
-} 
+}
+export const searchCategory = (state) => {
+    const headers = { Authorization: `Bearer ${localStorage.getItem("accessToken")}`};
+    return function (dispatch) {
+        return axios.get(`${URL_NAME}/category_view/?q=${state.q}`, {headers})
+        .then((response) =>{
+            dispatch(viewCategory(response.data))
+        })
+        .catch(
+            (error) => {
+                if (error.response) {
+                    notify.show(error.response.data.message, 'error', 4000);
+                } else if (error.request) {
+                    alert("REQUEST NOT MADE")
+                }
+                throw(error)
+            }
+        )
+    }
+
+}
 export function viewCategory(data){
     return {
         type: VIEW_CATEGORIES,

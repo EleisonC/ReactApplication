@@ -1,13 +1,10 @@
-const authentication = (state = [], action) =>{
+export const authentication = (state = [], action) =>{
     switch (action.type){
         case 'SIGN_UP_SUCCESS':
-        debugger;
-            return [...state,
-             Object.assign({}, action.payload)];
+            return state
         case 'LOGIN_SUCCESS':
-            return [...state,
-                Object.assign({}, action.payload)
-            ];
+            return state
+
         default:
             return state;
     }

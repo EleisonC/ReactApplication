@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as category from '../../../actions/categoryCreation'
-class CreateCategoty extends React.Component{
+class CreateCategory extends React.Component{
     state = {
         category_name: ''
     }
@@ -19,10 +19,14 @@ class CreateCategoty extends React.Component{
             this.props.history.push('/userpage')
         })
     }
+    returnDashboard = () =>{
+        this.props.history.push('/userpage')
+    }
     render(){
-    const {category_name} = this.state;
+        const {category_name} = this.state;
     return (
-            <div className="card mt-5">
+        <div id="add">
+            <div id="addCat" className="card mt-5">
                 <h4 className="card-header text-center">Add Category</h4>
                 <div className="card-body">       
                     <form onSubmit={this.handleCreate}>
@@ -33,10 +37,14 @@ class CreateCategoty extends React.Component{
                                 onChange={this.handleInput} value={category_name}
                                 />   
                             </div>
-                            <button type="submit" className="btn btn-primary btn-lg btn-block">CREATE</button>
+                            <button id="addBut" type="submit" className="btn btn-primary btn-lg btn-block">CREATE</button>
+                            <button id="addBut" onClick={this.returnDashboard}className="btn btn-danger btn-lg btn-block">
+                                CANCEL
+                            </button>
                         </div>
                     </form>
                 </div>
+            </div>
      </div>
     );
 }
@@ -47,4 +55,4 @@ function mapDispatchToProps (dispatch) {
     };
 }
 
-export default connect(null, mapDispatchToProps)(CreateCategoty);
+export default connect(null, mapDispatchToProps)(CreateCategory);

@@ -7,81 +7,99 @@ import { Link } from 'react-router-dom';
 
 
 class FirstDisplay extends React.Component{
-    constructor(props){
-        super(props)
-        this.props.actions.ViewCategory(1)
-    }
     state = {
-        page: 1
+        q: ""
+    }
+    componentWillMount(){
+        this.props.actions.ViewCategory(1);
+    }
+    handleInput = (event) => {
+        this.setState({q: event.target.value});
+        const category = this.state
+        this.props.actions.searchCategory(category)
     }
     nextPage = (e) => {
         e.preventDefault()
         if  (this.props.has_next === true) {
-            this.setState({
-                page: this.state.page + 1
-            })
-            this.props.actions.ViewCategory(this.state.page)
+            this.props.actions.ViewCategory(this.props.nextPage.substr(this.props.nextPage.length - 1))
         }else{
-            this.props.actions.ViewCategory(this.state.page)
+            this.props.actions.ViewCategory(Number(this.props.previousPage.substr(this.props.previousPage.length-1)) + 1)
         }
     }
     previousPage = (e) => {
         e.preventDefault()
         if (this.props.has_prev === true){
-            this.setState({
-                page: this.state.page - 1
-            })
-            this.props.actions.ViewCategory(this.state.page)
+            this.props.actions.ViewCategory(this.props.previousPage.substr(this.props.previousPage.length - 1))
         }else{
             this.props.actions.ViewCategory(this.state.page)
         }
     }
+    handleSearch = (value) => {
+        value.preventDefault();
+        const category = this.state
+        this.props.actions.searchCategory(category)
+    }
     render(){
-        const {category} = this.props;      
+        const { category , has_next, has_prev } = this.props; 
+        const { q } = this.state;
         return(
-            <div>
-            <div>
-            </div>
-            
-            <Link to='/createcategory'>   
-            <button type="button" id="addcategory" className="btn btn-primary">
+        <div>
+            <nav className="navbar navbar-light " id="navCat">
+                <form className="form-inline" onSubmit={this.handleSearch}>
+                    <input onChange={this.handleInput}
+                        value={q}
+                        name="q"
+                      id="CategorySearch"className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                    <button id="CategorySearchBut" className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <Link to='/create_category'>   
+            <button type="button" id="addcategory" className="btn btn-outline-primary">
                 Add Category
             </button>
             </Link>
-            <div className="row" id='row1'>
-                <div className="categorycontainer">
-                <button onClick={this.previousPage
-                } id="previousButton"type="button" className="btn btn-primary">Previous</button>
-                <button onClick={this.nextPage}
-                id="nextButton" type="button" className="btn btn-primary">Next</button>
-                {category ? 
-                category.map((item, index) => <div key={item.category_id}>
-                <Link to={`/${item.category_name}/${item.category_id}/recipies`}>
-                <button type="button"  id="categorybutton"className="btn btn-primary"> 
-                    {item.category_name}
-                </button>
-                </Link>
-                    </div>)
-
-                 : <div>NO categories</div>}
-
-
-                {/* <form  className ="form-group" role="search">
-                <div className="input-group add-on col-sm-3 pull-right" id='searchCategory'>
-                    <input
-                        id='Categorysearch'
-                        type="search"
-                        className="form-control"
-                        placeholder='Search for'/>
-                    <div className="input-group-btn">
-                        <button className="btn btn-default" type="submit">
-                            <i className="glyphicon glyphicon-search"></i>
-                        </button>
+            </nav>
+            <div className="container">
+            <div className="row">
+                {category && has_next === false && has_prev !== false ?
+                    <div id="paginateCat">
+                        <button onClick={this.previousPage
+                        } id="previousButton"type="button" className="btn btn-light">Previous</button>
                     </div>
-                </div>
-            </form> */}
-                
-                </div>
+                        : <div> </div>
+                }
+                    { category && has_next !== false ?
+                    <div id="paginateCat">
+                        <button onClick={this.previousPage
+                        } id="previousButton"type="button" className="btn btn-light">Previous</button>
+                        <button onClick={this.nextPage}
+                        id="nextButton" type="button" className="btn btn-light">Next</button>
+                    </div>
+                        : <div> </div>
+                    }
+                    <div id="catCard"className="row">
+                    {category && category.length > 0 ? 
+                    category.map((item) => 
+                    <div key={item.category_id}>
+                    <div className="col-sm card" id="categoryCard">
+                        <img className="card-img-top" src={"https://images.unsplash.com/photo-1473269712320-f24ce5aa6e5d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c430457ffc05dd273db3a437b0b20b97&auto=format&fit=crop&w=1951&q=80"} alt="Card image cap"/>
+                        <div className="card-body" id="cardBodyCat">
+                            <h5 className="card-title">{item.category_name}</h5>       
+                    <button  type="button"  id="categorybutton"className="btn btn-outline-primary"> 
+                    <Link id="link" to={`/${item.category_name}/${item.category_id}/recipies`}>
+                    More Details...
+                    </Link>
+                    </button>
+
+                        </div>
+                    </div>
+                        </div>)
+
+                        : <div id ="nocategory" className="alert alert-primary" role="alert">
+                        No Categories
+                        </div>}
+                    </div>
+                        
+            </div>
             </div>
             
             </div>
@@ -92,7 +110,9 @@ function mapStateToProps (state, ownProps){
     return {
         category: state.categories.categories,
         has_next: state.categories.has_next,
-        has_prev: state.categories.has_prev
+        has_prev: state.categories.has_prev,
+        nextPage: state.categories.next_page,
+        previousPage: state.categories.previous_page
     };
 }
 function mapDispatchToProps (dispatch) {
