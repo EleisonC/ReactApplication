@@ -18,7 +18,7 @@ class Login extends React.Component {
       event.preventDefault();
       const { username, password } = this.state;
       this.props.actions.login(this.state).then(() => {
-        this.props.history.push('/userpage');
+        this.props.history.push('/user-page');
         window.location.reload();
       },
 

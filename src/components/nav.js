@@ -46,7 +46,7 @@ class Navbar extends Component {
                   <div>
                     <div id="nav">
                       <li onClick={this.handleDash}className="nav-item active">
-                        <Link id="dash" to="/userpage" className="nav-link" >Dashboard<span className="sr-only">(current)</span></Link>
+                        <Link id="dash" to="/user-page" className="nav-link" >Dashboard<span className="sr-only">(current)</span></Link>
                       </li>
                       <li onClick={this.handleLogout} className="nav-item active">
                         <Link to="/login" className="nav-link" >Logout<span className="sr-only">(current)</span></Link>

@@ -60,7 +60,7 @@ class FirstDisplay extends React.Component {
               />
               <button id="CategorySearchBut" className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
             </form>
-            <Link to="/create_category">
+            <Link to="/create-category">
               <button type="button" id="addcategory" className="btn btn-outline-primary">
                 Add Category
               </button>
@@ -81,7 +81,7 @@ class FirstDisplay extends React.Component {
                 </div>
                         : <div> </div>
                 }
-              { category && has_next !== false ?
+              {category && has_next !== false && has_prev !== false ?
                 <div id="paginateCat">
                   <button
                     onClick={this.previousPage
@@ -91,6 +91,11 @@ class FirstDisplay extends React.Component {
                     className="btn btn-light"
                   >Previous
                   </button>
+                </div>
+                        : <div> </div>
+                }
+              { category && has_next !== false ?
+                <div id="paginateCat">
                   <button
                     onClick={this.nextPage}
                     id="nextButton"

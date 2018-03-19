@@ -16,11 +16,11 @@ class CreateCategory extends React.Component{
         e.preventDefault()
         const category_name = this.state;
         this.props.actions.AddCategory(this.state).then(() => {
-            this.props.history.push('/userpage')
+            this.props.history.push('/user-page')
         })
     }
     returnDashboard = () =>{
-        this.props.history.push('/userpage')
+        this.props.history.push('/user-page')
     }
     render(){
         const {category_name} = this.state;

@@ -26,13 +26,13 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/signup" component={Registration} />
             <Route exact path="/login" component={Login} />
-            <SecureRoute exact path="/userpage" component={FirstDisplay} />
-            <SecureRoute exact path="/create_category" component={CreateCategory} />
+            <SecureRoute exact path="/user-page" component={FirstDisplay} />
+            <SecureRoute exact path="/create-category" component={CreateCategory} />
             <SecureRoute exact path="/:name/:id/recipies" component={ViewRecipes} />
-            <SecureRoute exact path="/:name/:id/edit_category" component={EditCategory} />
-            <SecureRoute exact path="/:name/:id/add_recipe" component={CreateRecipe} />
+            <SecureRoute exact path="/:name/:id/edit-category" component={EditCategory} />
+            <SecureRoute exact path="/:name/:id/add-recipe" component={CreateRecipe} />
             <SecureRoute exact path="/:name/:categoryId/recipe/:recipeId" component={viewRecipe} />
-            <SecureRoute exact path="/category/:categoryId/recipe/:recipeId/edit_recipe" component={EditRecipe} />
+            <SecureRoute exact path="/category/:categoryId/recipe/:recipeId/edit-recipe" component={EditRecipe} />
           </Switch>
         </div>
       </BrowserRouter>
