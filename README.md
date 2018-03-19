@@ -2,7 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/EleisonC/ReactApplication/badge.svg?branch=develop)](https://coveralls.io/github/EleisonC/ReactApplication?branch=develop)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/aff8400ff8ef44bab96a6be0f0ca7d0b)](https://www.codacy.com/app/EleisonC/ReactApplication?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=EleisonC/ReactApplication&amp;utm_campaign=Badge_Grade)
 # yummy recipes react
-Yummy Reccipes(YR)  is a react-redux application whose purpose is to ease food recipe management of various food categories.
+Yummy Reccipes(YR)  is a react-redux application whose purpose is to ease food recipe management of various food categories. https://yummy-reciepy-eleison.herokuapp.com/
 ## Installation and Running
 ### Requirements
 - NodeJs 
