@@ -114,11 +114,11 @@ class FirstDisplay extends React.Component {
                           <img className="card-img-top" src="https://images.unsplash.com/photo-1473269712320-f24ce5aa6e5d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c430457ffc05dd273db3a437b0b20b97&auto=format&fit=crop&w=1951&q=80" alt="Card image cap" />
                           <div className="card-body" id="cardBodyCat">
                             <h5 className="card-title">{item.category_name}</h5>
-                            <button type="button" id="categorybutton"className="btn btn-outline-primary">
-                              <Link id="link" to={`/${item.category_name}/${item.category_id}/recipies`}>
+                            <Link id="link" to={`/${item.category_name.toLowerCase()}/${item.category_id}/recipies`}>
+                              <button type="button" id="categorybutton"className="btn btn-outline-primary">
                     More Details...
-                              </Link>
-                            </button>
+                              </button>
+                            </Link>
 
                           </div>
                         </div>

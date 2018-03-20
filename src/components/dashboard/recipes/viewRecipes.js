@@ -67,7 +67,7 @@ class ViewRecipes extends React.Component {
         <div>
           <div id="categoryR" className="card text-center">
             <div id="categoryheader"className="card-header">
-              <h1>{name}</h1>
+              <h1 id="headRec">{name}</h1>
             </div>
             <div id="categorybody"className="card-body">
               <Link to={`/${name}/${id}/add-recipe`}>
@@ -148,11 +148,11 @@ class ViewRecipes extends React.Component {
                           <div className="card-body" id="recipeBody">
                             <h5 className="card-title">{recipe.recipe_name}</h5>
                             <p className="card-text">{recipe.instructions.slice(0, 100)}...</p>
-                            <button type="button" id="Recipebutton"className="btn btn-outline-primary">
-                              <Link id="link" to={`/${name}/${recipe.category}/recipe/${recipe.recipe_id}`}>
+                            <Link id="link" to={`/${name}/${recipe.category}/recipe/${recipe.recipe_id}`}>
+                              <button type="button" id="Recipebutton"className="btn btn-outline-primary">
                                     More Details
-                              </Link>
-                            </button>
+                              </button>
+                            </Link>
                           </div>
                         </div>
                       </div>)

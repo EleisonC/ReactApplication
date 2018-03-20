@@ -10,33 +10,33 @@ import { shallowToJson } from 'enzyme-to-json';
 Enzyme.configure({ adapter: new Adapter() });
 
 import React from 'react';
-import FirstDisplay from "../../components/dashboard/display";
-import { viewCategory } from '../../actions/categoryCreation';
+import FirstDisplay from '../../components/dashboard/display';
+
 
 global.localStorage = {
   setItem: () => {},
-  getItem: () => {}
- };
+  getItem: () => {},
+};
 
 describe('<FirstDisplay />', () => {
   const store = configureMockStore([thunk])({
     auth: {},
-    categories:{
-      }
-    
+    categories: {
+    },
+
   });
-  const props = 
+  const props =
   {
-    actions: {ViewCategory: jest.fn((numb) => Promise.resolve("categories"))}
-  }
+    actions: { ViewCategory: jest.fn((numb) => Promise.resolve('categories')) },
+  };
   const preventDefault = jest.fn();
-  const component = mount(<Provider store={store} ><MemoryRouter><FirstDisplay {...props}/></MemoryRouter></Provider>);
+  const component = mount(<Provider store={store} ><MemoryRouter><FirstDisplay {...props} /></MemoryRouter></Provider>);
   it('should render itself without crashing', () => {
-    const { enzymeWrapper } = mount(<Provider store={store} ><MemoryRouter><FirstDisplay {...props}/></MemoryRouter></Provider>);
+    const { enzymeWrapper } = mount(<Provider store={store} ><MemoryRouter><FirstDisplay {...props} /></MemoryRouter></Provider>);
   });
   it('should render form', () => {
     expect(component.find('form').length).toBe(1);
-    expect(component.find('form').simulate("submit", { preventDefault }));
+    expect(component.find('form').simulate('submit', { preventDefault }));
     expect(preventDefault).toBeCalled();
-});
+  });
 });

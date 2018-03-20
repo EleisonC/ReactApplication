@@ -9,18 +9,18 @@ import { Provider } from 'react-redux';
 Enzyme.configure({ adapter: new Adapter() });
 
 import React from 'react';
-import ViewRecipes from "../../components/dashboard/recipes/viewRecipes";
+import ViewRecipes from '../../components/dashboard/recipes/viewRecipes';
 
 global.localStorage = {
   setItem: () => {},
-  getItem: () => {}
- };
+  getItem: () => {},
+};
 
 describe('<ViewRecipes />', () => {
   const store = configureMockStore([thunk])({
     auth: [],
-    categories:{},
-    recipes:{
+    categories: {},
+    recipes: {
       has_next: true,
       has_prev: false,
       next_page: 'http://127.0.0.1:5000/view_recipes/20/?page=2',
@@ -32,7 +32,7 @@ describe('<ViewRecipes />', () => {
           date_modified: 'Thu, 08 Mar 2018 14:20:44 GMT',
           instructions: 'its a very good meal',
           recipe_id: 13,
-          recipe_name: 'Rice'
+          recipe_name: 'Rice',
         },
         {
           category: 20,
@@ -40,7 +40,7 @@ describe('<ViewRecipes />', () => {
           date_modified: 'Thu, 08 Mar 2018 11:48:22 GMT',
           instructions: 'its really good',
           recipe_id: 12,
-          recipe_name: 'Doof soup'
+          recipe_name: 'Doof soup',
         },
         {
           category: 20,
@@ -48,30 +48,30 @@ describe('<ViewRecipes />', () => {
           date_modified: 'Thu, 08 Mar 2018 11:46:48 GMT',
           instructions: 'its really nice',
           recipe_id: 11,
-          recipe_name: 'Good soup'
-        }
-      ]
-    }
+          recipe_name: 'Good soup',
+        },
+      ],
+    },
   });
   const props = {
-      match: {
-          params:{
-              id: 1,
-              name:"bread"
-          }
+    match: {
+      params: {
+        id: 1,
+        name: 'bread',
       },
-      actions: {
-          ViewRecipes: jest.fn((numb) => {Promise.resolve("categories")})
-        }
-  }
+    },
+    actions: {
+      ViewRecipes: jest.fn((numb) => { Promise.resolve('categories'); }),
+    },
+  };
   const preventDefault = jest.fn();
-  const component =  mount(<Provider store={store} ><MemoryRouter><ViewRecipes {...props}/></MemoryRouter></Provider>);
+  const component = mount(<Provider store={store} ><MemoryRouter><ViewRecipes {...props} /></MemoryRouter></Provider>);
   it('should render itself without crashing', () => {
-    const { enzymeWrapper } = mount(<Provider store={store} ><MemoryRouter><ViewRecipes {...props}/></MemoryRouter></Provider>);
+    const { enzymeWrapper } = mount(<Provider store={store} ><MemoryRouter><ViewRecipes {...props} /></MemoryRouter></Provider>);
   });
   it('should render form', () => {
     expect(component.find('form').length).toBe(1);
-    expect(component.find('form').simulate("submit", { preventDefault }));
+    expect(component.find('form').simulate('submit', { preventDefault }));
     expect(preventDefault).toBeCalled();
-});
+  });
 });
