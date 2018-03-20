@@ -10,6 +10,7 @@ class ViewRecipe extends React.Component {
     const recipeId = this.props.match.params.recipeId;
     this.props.action.ViewRecipe(categoryId, recipeId);
   }
+  // handle the deletion when delete is clicked
     handledelete = () => {
       const categoryId = this.props.match.params.categoryId;
       const recipeId = this.props.match.params.recipeId;
@@ -18,6 +19,7 @@ class ViewRecipe extends React.Component {
         this.props.history.push(`/${category}/${categoryId}/recipies`);
       });
     }
+    // handle the return to recipes when return to recipes is clicked
     returnToRecipes = () => {
       const categoryId = this.props.match.params.categoryId;
       const category = this.props.match.params.name;

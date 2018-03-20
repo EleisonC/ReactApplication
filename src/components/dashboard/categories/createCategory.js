@@ -4,14 +4,17 @@ import { bindActionCreators } from 'redux';
 import * as category from '../../../actions/categoryCreation';
 
 class CreateCategory extends React.Component {
+    // this state is local state for the commponent
     state = {
       category_name: '',
     }
+    // handle input of data as one inputs so as to update local state
     handleInput = (event) => {
       event.preventDefault();
       const { name, value } = event.target;
       this.setState({ [name]: value });
     }
+    // handle the creation when submit is clicked
     handleCreate = (e) => {
       e.preventDefault();
       const category_name = this.state;

@@ -6,6 +6,7 @@ import * as category from '../../../actions/categoryCreation';
 import * as recipes from '../../../actions/recipeActions';
 
 class ViewRecipes extends React.Component {
+    
     state = {
       q: '',
       category: this.props.match.params.id,

@@ -5,15 +5,18 @@ import * as authentication from '../../actions/loginUser';
 
 
 class Login extends React.Component {
+    // this state is local state for the commponent
     state = {
       username: '',
       password: '',
     }
+    // handle input of data as one inputs so as to update local state
     handleChange = (event) => {
       event.preventDefault();
       const { name, value } = event.target;
       this.setState({ [name]: value });
     }
+    // handle the login when submit is clicked
     handleLogin = (event) => {
       event.preventDefault();
       const { username, password } = this.state;

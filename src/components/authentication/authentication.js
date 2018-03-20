@@ -4,16 +4,19 @@ import { bindActionCreators } from 'redux';
 import * as authentication from '../../actions/registerUser';
 
 class Registraton extends React.Component {
+    // this state is local state for the commponent
     state = {
       email: '',
       username: '',
       password: '',
     }
+    // handle input of data as one inputs so as to update local state
     handleInput = (event) => {
       event.preventDefault();
       const { name, value } = event.target;
       this.setState({ [name]: value });
     }
+    // handle the singup when submit is clicked
     handleSignup = (e) => {
       e.preventDefault();
       const { email, username, password } = this.state;

@@ -7,17 +7,20 @@ import * as category from '../../actions/categoryCreation';
 
 
 class FirstDisplay extends React.Component {
+    // this state is local state for the commponent
     state = {
       q: '',
     }
     componentWillMount() {
       this.props.actions.ViewCategory(1);
     }
+    // handle input of data as one inputs so as to update local state
     handleInput = (event) => {
       this.setState({ q: event.target.value });
       const category = this.state;
       this.props.actions.searchCategory(category);
     }
+    // handle pagination of categories by moving to the next page
     nextPage = (e) => {
       e.preventDefault();
       if (this.props.has_next === true) {
@@ -27,6 +30,7 @@ class FirstDisplay extends React.Component {
           Number(this.props.previousPage.substr(this.props.previousPage.length - 1)) + 1);
       }
     }
+    // handle pagination of categories by moving to the previous page
     previousPage = (e) => {
       e.preventDefault();
       if (this.props.has_prev === true) {
@@ -36,6 +40,7 @@ class FirstDisplay extends React.Component {
         this.props.actions.ViewCategory(this.state.page);
       }
     }
+    // handle search of categories
     handleSearch = (value) => {
       value.preventDefault();
       const category = this.state;
